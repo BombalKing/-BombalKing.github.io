@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Photo Gallery</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            width: 90%;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <!-- Thumbnails are now linked for lightbox use -->
+        <img src="path_to_image1.jpg" alt="Description1">
+        <img src="path_to_image2.jpg" alt="Description2">
+        <!-- Add more images similarly -->
+    </div>
+    <div class="lightbox" id="lightbox">
+        <img src="" alt="">
+    </div>
+    <script>
+        document.querySelectorAll('.gallery img').forEach(image => {
+            image.addEventListener('click', function () {
+                document.querySelector('.lightbox').style.display = 'flex';
+                document.querySelector('.lightbox img').src = this.src;
+            });
+        });
+        document.querySelector('.lightbox').addEventListener('click', function () {
+            this.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
